@@ -31,7 +31,7 @@ export async function speakKorean(text: string): Promise<void> {
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "ko-KR";
-  utterance.rate = 0.85;
+  utterance.rate = 0.60;
   utterance.pitch = 1;
 
   // Prefer a Korean voice; fall back to any available voice
