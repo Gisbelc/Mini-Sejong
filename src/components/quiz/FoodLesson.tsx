@@ -78,6 +78,83 @@ const bathroom = [
   { korean: "수건", meaning: "Toalla",              emoji: "🏳️" },
 ];
 
+/* ── Números coreanos nativos ── */
+const nativeNums = [
+  { num: 1,  pure: "하나", counter: "한 개" },
+  { num: 2,  pure: "둘",   counter: "두 개" },
+  { num: 3,  pure: "셋",   counter: "세 개" },
+  { num: 4,  pure: "넷",   counter: "네 개" },
+  { num: 5,  pure: "다섯", counter: "다섯 개" },
+  { num: 6,  pure: "여섯", counter: "여섯 개" },
+  { num: 7,  pure: "일곱", counter: "일곱 개" },
+  { num: 8,  pure: "여덟", counter: "여덟 개" },
+  { num: 9,  pure: "아홉", counter: "아홉 개" },
+  { num: 10, pure: "열",   counter: "열 개" },
+];
+
+function NativeCounter() {
+  const [count, setCount] = useState(1);
+  const cur = nativeNums[count - 1];
+  return (
+    <div className="pt-1">
+      {/* Tabla */}
+      <div className="grid grid-cols-5 gap-1.5 mb-4">
+        {nativeNums.map((n) => (
+          <button
+            key={n.num}
+            onClick={() => setCount(n.num)}
+            className={`flex flex-col items-center rounded-xl py-2 border-2 transition-all
+              ${count === n.num
+                ? "bg-emerald-600 border-emerald-600 text-white scale-105 shadow"
+                : "bg-emerald-50 border-emerald-100 text-emerald-800 hover:bg-emerald-100"}`}
+          >
+            <span className="font-extrabold text-sm">{n.pure}</span>
+            <span className={`text-xs ${count === n.num ? "text-emerald-100" : "text-emerald-400"}`}>{n.num}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Contador interactivo */}
+      <div className="bg-emerald-50 rounded-2xl border border-emerald-100 px-4 py-5 flex items-center justify-between gap-4">
+        <button
+          onClick={() => setCount((c) => Math.max(1, c - 1))}
+          className="w-12 h-12 rounded-full bg-white border-2 border-emerald-200 text-emerald-600
+            text-2xl font-bold hover:bg-emerald-100 transition-colors flex items-center justify-center"
+        >−</button>
+
+        <div className="text-center flex-1">
+          <p className="text-5xl font-extrabold text-emerald-700">{cur.num}</p>
+          <p className="text-2xl font-bold text-emerald-900 mt-1">{cur.pure}</p>
+          <p className="text-base text-emerald-500 mt-0.5 font-medium">{cur.counter}</p>
+          <div className="flex justify-center mt-2">
+            <AudioButton text={cur.counter} size="md" />
+          </div>
+        </div>
+
+        <button
+          onClick={() => setCount((c) => Math.min(10, c + 1))}
+          className="w-12 h-12 rounded-full bg-white border-2 border-emerald-200 text-emerald-600
+            text-2xl font-bold hover:bg-emerald-100 transition-colors flex items-center justify-center"
+        >+</button>
+      </div>
+
+      {/* Nota: formas cortas */}
+      <div className="mt-3 bg-amber-50 rounded-xl px-4 py-3 border border-amber-100">
+        <p className="text-xs text-amber-700 font-bold mb-1">⚡ Antes de un contador cambian:</p>
+        <div className="grid grid-cols-4 gap-1 text-center text-xs">
+          {[["하나 →","한"],["둘 →","두"],["셋 →","세"],["넷 →","네"]].map(([a,b]) => (
+            <div key={a} className="bg-white rounded-lg py-1.5 border border-amber-100">
+              <p className="text-amber-500">{a}</p>
+              <p className="text-amber-800 font-extrabold text-base">{b}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-amber-400 mt-2 italic">다섯, 여섯, 일곱, 여덟, 아홉, 열 no cambian.</p>
+      </div>
+    </div>
+  );
+}
+
 export default function FoodLesson() {
   return (
     <div className="flex flex-col gap-3 mb-4">
@@ -269,6 +346,86 @@ export default function FoodLesson() {
             </div>
           ))}
         </div>
+      </Section>
+
+      {/* ¿Qué hay alrededor? / ¿Quién está en el aula? */}
+      <Section emoji="🏫" title="주변에 뭐가 있어요? / 누가 있어요?" color="border-indigo-100">
+        <p className="text-xs text-indigo-400 mb-3 pt-1">
+          <strong>뭐가</strong> = qué (sujeto) &nbsp;·&nbsp; <strong>누가</strong> = quién (sujeto) &nbsp;·&nbsp; <strong>도</strong> = también
+        </p>
+
+        {/* Diálogo alrededor del Sejong */}
+        <p className="text-xs font-bold text-indigo-600 mb-2">🗺️ Alrededor del Sejong Hakdang</p>
+        <div className="flex flex-col gap-2 mb-4">
+          {[
+            { k:"세종 학당 주변에 뭐가 있어요?", m:"¿Qué hay alrededor del Sejong Hakdang?", q:true },
+            { k:"편의점이 있어요.",              m:"Hay una tienda de conveniencia.",          q:false },
+            { k:"카페도 있어요.",                m:"También hay un café.",                    q:false },
+            { k:"약국하고 식당도 있어요.",       m:"También hay una farmacia y un restaurante.", q:false },
+          ].map((ex) => (
+            <div key={ex.k} className={`flex items-center justify-between rounded-xl px-3 py-2.5 border
+              ${ex.q ? "bg-indigo-50 border-indigo-200" : "bg-white border-indigo-100"}`}>
+              <div>
+                <p className={`font-bold text-sm ${ex.q ? "text-indigo-800" : "text-indigo-700"}`}>{ex.k}</p>
+                <p className="text-indigo-400 text-xs mt-0.5">{ex.m}</p>
+              </div>
+              <AudioButton text={ex.k} size="sm" />
+            </div>
+          ))}
+        </div>
+
+        {/* Diálogo en el aula */}
+        <p className="text-xs font-bold text-indigo-600 mb-2">🏫 En el aula de clases</p>
+        <div className="flex flex-col gap-2 mb-4">
+          {[
+            { k:"교실에 누가 있어요?",       m:"¿Quién está en el aula?",           q:true  },
+            { k:"선생님이 있어요.",           m:"Está la maestra / el maestro.",      q:false },
+            { k:"학생들이 있어요.",           m:"Están los estudiantes.",             q:false },
+            { k:"친구도 있어요?",             m:"¿Tu amigo/a también está?",          q:true  },
+            { k:"네, 친구도 있어요.",         m:"Sí, mi amigo/a también está.",       q:false },
+          ].map((ex) => (
+            <div key={ex.k} className={`flex items-center justify-between rounded-xl px-3 py-2.5 border
+              ${ex.q ? "bg-indigo-50 border-indigo-200" : "bg-white border-indigo-100"}`}>
+              <div>
+                <p className={`font-bold text-sm ${ex.q ? "text-indigo-800" : "text-indigo-700"}`}>{ex.k}</p>
+                <p className="text-indigo-400 text-xs mt-0.5">{ex.m}</p>
+              </div>
+              <AudioButton text={ex.k} size="sm" />
+            </div>
+          ))}
+        </div>
+
+        {/* Vocabulario de lugares */}
+        <p className="text-xs font-bold text-indigo-600 mb-2">📍 Lugares comunes</p>
+        <div className="grid grid-cols-2 gap-1.5">
+          {[
+            { k:"편의점", m:"Tienda de conveniencia" },
+            { k:"식당",   m:"Restaurante" },
+            { k:"카페",   m:"Cafetería / Café" },
+            { k:"약국",   m:"Farmacia" },
+            { k:"은행",   m:"Banco" },
+            { k:"서점",   m:"Librería" },
+            { k:"공원",   m:"Parque" },
+            { k:"마트",   m:"Supermercado" },
+          ].map((p) => (
+            <div key={p.k} className="flex items-center justify-between bg-indigo-50 rounded-xl px-3 py-2 border border-indigo-100">
+              <div>
+                <p className="text-indigo-800 font-bold text-sm">{p.k}</p>
+                <p className="text-indigo-400 text-xs">{p.m}</p>
+              </div>
+              <AudioButton text={p.k} size="sm" />
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Números coreanos nativos */}
+      <Section emoji="1️⃣" title="Números coreanos nativos — 하나, 둘, 셋…" color="border-emerald-100">
+        <p className="text-xs text-emerald-400 mb-3 pt-1">
+          Distintos de los sino-coreanos (일, 이, 삼…). Se usan para <strong>contar objetos</strong> (개),
+          personas (명) y decir la <strong>hora</strong> (시).
+        </p>
+        <NativeCounter />
       </Section>
 
       {/* Frutas */}
