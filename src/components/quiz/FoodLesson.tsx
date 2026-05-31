@@ -171,31 +171,6 @@ export default function FoodLesson() {
         </div>
       </Section>
 
-      {/* 어디에 있어요? + 위에 */}
-      <Section emoji="📍" title="¿Dónde está? — 어디에 있어요?" color="border-emerald-100">
-        <p className="text-xs text-emerald-500 mb-3 pt-1">
-          Pregunta dónde está algo. La respuesta usa preposiciones de la Unidad 4 + <strong>에 있어요</strong>.
-        </p>
-        <div className="flex flex-col gap-2">
-          {[
-            { k:"치약이 어디에 있어요?",   m:"¿Dónde está la pasta de dientes?" },
-            { k:"비누 위에 있어요.",        m:"Está encima del jabón." },
-            { k:"수건이 어디에 있어요?",   m:"¿Dónde está la toalla?" },
-            { k:"의자 위에 있어요.",        m:"Está encima de la silla." },
-            { k:"커피가 어디에 있어요?",   m:"¿Dónde está el café?" },
-            { k:"냉장고 안에 있어요.",      m:"Está dentro de la nevera." },
-          ].map((ex) => (
-            <div key={ex.k} className="flex items-center justify-between bg-emerald-50 rounded-xl px-3 py-2.5 border border-emerald-100">
-              <div>
-                <p className="text-emerald-900 font-bold text-sm">{ex.k}</p>
-                <p className="text-emerald-400 text-xs mt-0.5">{ex.m}</p>
-              </div>
-              <AudioButton text={ex.k} size="sm" />
-            </div>
-          ))}
-        </div>
-      </Section>
-
       {/* 뭐 줄까요? / 주세요 */}
       <Section emoji="🙏" title="뭐 줄까요? / 주세요 — ¿Qué quieres? / Por favor" color="border-violet-100">
         <p className="text-xs text-violet-500 mb-3 pt-1">

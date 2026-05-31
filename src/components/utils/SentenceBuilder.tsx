@@ -371,6 +371,40 @@ const PATTERNS: PatternDef[] = [
 
   /* ── PREGUNTAS ── */
   {
+    id: "p13",
+    unit: "U5 ❓",
+    unitBadge: "bg-emerald-500 text-white",
+    border: "border-emerald-200",
+    headerBg: "bg-emerald-50",
+    chipSel: "bg-emerald-500 text-white",
+    chipUnsel: "bg-white border-emerald-200 text-emerald-800",
+    chipText: "text-emerald-800",
+    resultBg: "bg-emerald-100",
+    resultText: "text-emerald-900",
+    title: "___ 이/가 어디에 있어요?",
+    titleEs: "¿Dónde está ___? (comida/baño)",
+    slots: [
+      {
+        label: "Objeto",
+        options: [
+          { k: "치약",   es: "la pasta de dientes" },
+          { k: "칫솔",   es: "el cepillo de dientes" },
+          { k: "비누",   es: "el jabón" },
+          { k: "수건",   es: "la toalla" },
+          { k: "우유",   es: "la leche" },
+          { k: "커피",   es: "el café" },
+          { k: "주스",   es: "el jugo" },
+          { k: "사과",   es: "la manzana" },
+          { k: "햄버거", es: "la hamburguesa" },
+        ],
+      },
+    ],
+    assemble: ([obj]) => ({
+      ko: `${obj.k}${iGa(obj.k)} 어디에 있어요?`,
+      es: `¿Dónde está ${obj.es}?`,
+    }),
+  },
+  {
     id: "p7",
     unit: "U4 ❓",
     unitBadge: "bg-orange-500 text-white",
@@ -636,7 +670,7 @@ function PatternCard({ pattern }: { pattern: PatternDef }) {
 }
 
 const STATEMENT_IDS = ["p1","p2","p3","p4","p5","p6","p11","p12"];
-const QUESTION_IDS  = ["p7","p8","p9","p10"];
+const QUESTION_IDS  = ["p7","p8","p9","p10","p13"];
 
 /* ── Componente principal ── */
 export default function SentenceBuilder() {
