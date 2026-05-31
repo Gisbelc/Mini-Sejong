@@ -3,25 +3,40 @@
 import { useState } from "react";
 import AudioButton from "./AudioButton";
 
-const nativeMap: Record<number, { pure: string; counter: string; romanization: string }> = {
-  1:  { pure: "하나", counter: "한 개", romanization: "hana / han gae" },
-  2:  { pure: "둘",   counter: "두 개", romanization: "dul / du gae" },
-  3:  { pure: "셋",   counter: "세 개", romanization: "set / se gae" },
-  4:  { pure: "넷",   counter: "네 개", romanization: "net / ne gae" },
-  5:  { pure: "다섯", counter: "다섯 개", romanization: "daseot gae" },
-  6:  { pure: "여섯", counter: "여섯 개", romanization: "yeoseot gae" },
-  7:  { pure: "일곱", counter: "일곱 개", romanization: "ilgop gae" },
-  8:  { pure: "여덟", counter: "여덟 개", romanization: "yeodeol gae" },
-  9:  { pure: "아홉", counter: "아홉 개", romanization: "ahop gae" },
-  10: { pure: "열",   counter: "열 개",  romanization: "yeol gae" },
-};
+/* ── Generador de números coreanos nativos (1–99) ── */
+const ones        = ["","하나","둘","셋","넷","다섯","여섯","일곱","여덟","아홉"];
+const onesCounter = ["","한",  "두","세","네","다섯","여섯","일곱","여덟","아홉"];
+const tens        = ["","열","스물","서른","마흔","쉰","예순","일흔","여든","아흔"];
+
+function toNative(n: number): { pure: string; counter: string } | null {
+  if (n < 1 || n > 99 || isNaN(n)) return null;
+
+  const t = Math.floor(n / 10);
+  const o = n % 10;
+
+  if (t === 0) {
+    // 1-9
+    return { pure: ones[o], counter: onesCounter[o] + " 개" };
+  }
+  if (o === 0) {
+    // 10, 20, 30 … exactos
+    // 스물 solo → 스무 개 (veinte objetos)
+    const counterTens = t === 2 ? "스무" : tens[t];
+    return { pure: tens[t], counter: counterTens + " 개" };
+  }
+  // 11-99
+  return {
+    pure:    tens[t] + ones[o],
+    counter: tens[t] + onesCounter[o] + " 개",
+  };
+}
 
 export default function NativeNumberConverter() {
   const [value, setValue] = useState("");
 
-  const num = value !== "" ? parseInt(value, 10) : null;
-  const result = num !== null && !isNaN(num) ? nativeMap[num] ?? null : null;
-  const isOutOfRange = num !== null && !isNaN(num) && !nativeMap[num];
+  const num    = value !== "" ? parseInt(value, 10) : null;
+  const result = num !== null ? toNative(num) : null;
+  const isOutOfRange = num !== null && !isNaN(num) && result === null;
 
   return (
     <div className="bg-white/80 backdrop-blur rounded-2xl border-2 border-emerald-200 p-5 shadow-sm">
@@ -29,7 +44,7 @@ export default function NativeNumberConverter() {
         1️⃣ Conversor — Números coreanos nativos
       </h3>
       <p className="text-xs text-emerald-500 mb-3">
-        Escribe un número del 1 al 10 y mira cómo se dice en coreano puro
+        Escribe un número del 1 al 99 y mira cómo se dice en coreano puro
       </p>
 
       <input
@@ -37,7 +52,7 @@ export default function NativeNumberConverter() {
         inputMode="numeric"
         value={value}
         onChange={(e) => setValue(e.target.value.replace(/\D/g, "").slice(0, 2))}
-        placeholder="ej. 3"
+        placeholder="ej. 27"
         className="w-full border-2 border-emerald-200 rounded-xl px-4 py-2.5 text-lg font-mono
           focus:outline-none focus:border-emerald-500 transition-colors bg-emerald-50
           placeholder:text-emerald-300"
@@ -45,7 +60,7 @@ export default function NativeNumberConverter() {
 
       {result && (
         <div className="mt-4 space-y-3 animate-fade-in">
-          {/* Forma pura */}
+          {/* Forma sola */}
           <div className="flex items-center justify-between bg-emerald-50 rounded-xl px-4 py-3">
             <div>
               <p className="text-xs text-emerald-400 font-medium mb-0.5">Forma sola</p>
@@ -63,18 +78,19 @@ export default function NativeNumberConverter() {
             <AudioButton text={result.counter} />
           </div>
 
-          {/* Romanización */}
-          <div className="bg-orange-50 rounded-xl px-4 py-3">
-            <p className="text-xs text-orange-400 font-medium mb-0.5">Romanización</p>
-            <p className="text-base font-semibold text-orange-700 italic">{result.romanization}</p>
-          </div>
+          {/* Nota de formas que cambian (solo para 1-4 y 20) */}
+          {(num === 1 || num === 2 || num === 3 || num === 4 || num === 20) && (
+            <div className="bg-amber-50 rounded-xl px-4 py-3 border border-amber-100">
+              <p className="text-xs text-amber-700 font-semibold">
+                ⚡ {result.pure} cambia a <span className="font-extrabold">{result.counter.replace(" 개","")}</span> antes de un contador
+              </p>
+            </div>
+          )}
         </div>
       )}
 
       {isOutOfRange && (
-        <p className="mt-3 text-red-400 text-sm">
-          Ingresa un número entre 1 y 10
-        </p>
+        <p className="mt-3 text-red-400 text-sm">Ingresa un número entre 1 y 99</p>
       )}
     </div>
   );
