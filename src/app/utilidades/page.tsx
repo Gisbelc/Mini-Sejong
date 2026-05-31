@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import SentenceBuilder from "@/components/utils/SentenceBuilder";
@@ -28,7 +28,7 @@ export default function UtilidadesPage() {
         </div>
       </div>
 
-      {/* Intro */}
+      {/* Intro SentenceBuilder */}
       <div className="bg-emerald-50 border-2 border-emerald-100 rounded-2xl px-5 py-4 mb-6">
         <p className="text-sm text-emerald-700 font-medium">
           Selecciona las piezas y arma oraciones en coreano.

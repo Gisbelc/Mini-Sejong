@@ -105,24 +105,64 @@ export default function HomePage() {
           Utilidades
         </h2>
 
-        <Link href="/utilidades">
-          <div className="rounded-2xl border-2 border-cyan-100 bg-white px-5 py-4
-            flex items-center gap-4 hover:bg-cyan-50 transition-colors cursor-pointer">
-            <span className="text-2xl">🔨</span>
-            <div className="flex-1">
-              <p className="font-bold text-cyan-800 text-sm">Constructor de oraciones</p>
-              <p className="text-xs text-cyan-400 mt-0.5">
-                Arma oraciones básicas con vocabulario de U1–U4
-              </p>
+        <div className="flex flex-col gap-2">
+          <Link href="/utilidades">
+            <div className="rounded-2xl border-2 border-cyan-100 bg-white px-5 py-4
+              flex items-center gap-4 hover:bg-cyan-50 transition-colors cursor-pointer">
+              <span className="text-2xl">🔨</span>
+              <div className="flex-1">
+                <p className="font-bold text-cyan-800 text-sm">Constructor de oraciones</p>
+                <p className="text-xs text-cyan-400 mt-0.5">
+                  Arma oraciones básicas con vocabulario de U1–U5
+                </p>
+              </div>
+              <svg
+                className="w-5 h-5 text-cyan-300 flex-shrink-0"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
             </div>
-            <svg
-              className="w-5 h-5 text-cyan-300 flex-shrink-0"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </div>
-        </Link>
+          </Link>
+
+          <Link href="/verbos">
+            <div className="rounded-2xl border-2 border-amber-100 bg-white px-5 py-4
+              flex items-center gap-4 hover:bg-amber-50 transition-colors cursor-pointer">
+              <span className="text-2xl">📋</span>
+              <div className="flex-1">
+                <p className="font-bold text-amber-800 text-sm">Verbos — 동사</p>
+                <p className="text-xs text-amber-400 mt-0.5">
+                  30 verbos esenciales del 1A con 기본형 y 해요체
+                </p>
+              </div>
+              <svg
+                className="w-5 h-5 text-amber-300 flex-shrink-0"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </Link>
+
+          <Link href="/escritura">
+            <div className="rounded-2xl border-2 border-violet-100 bg-white px-5 py-4
+              flex items-center gap-4 hover:bg-violet-50 transition-colors cursor-pointer">
+              <span className="text-2xl">✍️</span>
+              <div className="flex-1">
+                <p className="font-bold text-violet-800 text-sm">한국어 쓰기 — Escritura en coreano</p>
+                <p className="text-xs text-violet-400 mt-0.5">
+                  Escribe frases de U1–U5 y comprueba tu respuesta
+                </p>
+              </div>
+              <svg
+                className="w-5 h-5 text-violet-300 flex-shrink-0"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </Link>
+        </div>
       </section>
 
       <footer className="mt-10 text-center text-xs text-cyan-300 font-medium">
