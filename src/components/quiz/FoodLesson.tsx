@@ -219,10 +219,10 @@ export default function FoodLesson() {
         </p>
 
         {/* Diálogo alrededor del Sejong */}
-        <p className="text-xs font-bold text-indigo-600 mb-2">🗺️ Alrededor del Sejong Hakdang</p>
+        <p className="text-xs font-bold text-indigo-600 mb-2">🗺️ Alrededor de la academia Sejong</p>
         <div className="flex flex-col gap-2 mb-4">
           {[
-            { k:"세종 학당 주변에 뭐가 있어요?", m:"¿Qué hay alrededor del Sejong Hakdang?", q:true },
+            { k:"세종 학당 주변에 뭐가 있어요?", m:"¿Qué hay alrededor de la academia Sejong?", q:true },
             { k:"편의점이 있어요.",              m:"Hay una tienda de conveniencia.",          q:false },
             { k:"카페도 있어요.",                m:"También hay un café.",                    q:false },
             { k:"약국하고 식당도 있어요.",       m:"También hay una farmacia y un restaurante.", q:false },
@@ -306,6 +306,102 @@ export default function FoodLesson() {
                     <AudioButton text={item.korean} size="sm" />
                   </div>
                 ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Contadores — 개 명 마리 잔 살 */}
+      <Section emoji="🔢" title="몇 개예요? — Contadores (분류사)" color="border-amber-100">
+        <p className="text-xs text-amber-600 mb-3 pt-1">
+          En coreano el número va <strong>detrás del sustantivo</strong> y lleva un <strong>contador</strong> que cambia según lo que se cuente. Se usan los números nativos (하나, 둘…).
+        </p>
+
+        {/* Tabla de contadores */}
+        <div className="flex flex-col gap-2 mb-4">
+          {([
+            { counter: "개",   romanization: "gae",   emoji: "📦", usage: "Objetos en general", examples: ["사과 두 개 — dos manzanas", "과자 세 개 — tres snacks"] },
+            { counter: "명",   romanization: "myeong", emoji: "👤", usage: "Personas (formal)",  examples: ["학생 세 명 — tres estudiantes", "친구 두 명 — dos amigos"] },
+            { counter: "마리", romanization: "mari",   emoji: "🐱", usage: "Animales",            examples: ["고양이 한 마리 — un gato", "강아지 두 마리 — dos perros"] },
+            { counter: "잔",   romanization: "jan",    emoji: "☕", usage: "Tazas / Vasos",       examples: ["커피 한 잔 — una taza de café", "주스 두 잔 — dos vasos de jugo"] },
+            { counter: "병",   romanization: "byeong", emoji: "🍶", usage: "Botellas",            examples: ["물 한 병 — una botella de agua", "콜라 두 병 — dos botellas de cola"] },
+            { counter: "권",   romanization: "gwon",   emoji: "📚", usage: "Libros / Volúmenes",  examples: ["책 한 권 — un libro", "잡지 두 권 — dos revistas"] },
+            { counter: "장",   romanization: "jang",   emoji: "📄", usage: "Hojas / Tickets",     examples: ["종이 한 장 — una hoja", "티켓 두 장 — dos tickets"] },
+            { counter: "살",   romanization: "sal",    emoji: "🎂", usage: "Años de edad",        examples: ["스물두 살 — 22 años", "열 살 — 10 años"] },
+          ] as { counter: string; romanization: string; emoji: string; usage: string; examples: string[] }[]).map((c) => (
+            <div key={c.counter} className="bg-amber-50 rounded-xl px-3 py-3 border border-amber-100">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-lg">{c.emoji}</span>
+                <p className="text-amber-900 font-extrabold text-xl">{c.counter}</p>
+                <p className="text-amber-400 text-xs font-mono">({c.romanization})</p>
+                <AudioButton text={c.counter} size="sm" />
+                <p className="text-amber-700 text-xs font-semibold ml-auto">{c.usage}</p>
+              </div>
+              <div className="flex flex-col gap-0.5 pl-8">
+                {c.examples.map((ex) => (
+                  <p key={ex} className="text-amber-600 text-xs">• {ex}</p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Nota: 개 como comodín */}
+        <div className="bg-emerald-50 rounded-xl px-4 py-3 border border-emerald-100 mb-4">
+          <p className="text-xs text-emerald-700 font-bold mb-0.5">💡 개 como comodín</p>
+          <p className="text-xs text-emerald-600">
+            Si no recuerdas el contador específico de un <strong>objeto sólido</strong>, usa <strong>개</strong> — se entiende.
+            Ej: 꽃 두 개 (dos flores) es válido aunque el contador "correcto" sea 송이.
+          </p>
+        </div>
+
+        {/* Formas antes de contador */}
+        <div className="bg-orange-50 rounded-xl px-4 py-3 border border-orange-100 mb-4">
+          <p className="text-xs text-orange-700 font-bold mb-2">⚡ Los números 1–4 y 20 cambian al ir antes de un contador</p>
+          <div className="grid grid-cols-3 gap-x-4 gap-y-1">
+            {([["하나", "한"], ["둘", "두"], ["셋", "세"], ["넷", "네"], ["스물", "스무"]] as [string, string][]).map(([solo, before]) => (
+              <p key={solo} className="text-xs text-orange-600">
+                {solo} → <strong className="text-orange-800">{before}</strong>
+              </p>
+            ))}
+          </div>
+        </div>
+
+        {/* Patrón 몇 */}
+        <div className="bg-amber-50 rounded-xl px-4 py-3 border border-amber-200 mb-4">
+          <p className="text-xs text-amber-600 font-bold mb-1">Estructura — ¿cuántos...?</p>
+          <p className="text-sm font-mono text-amber-900">
+            <span className="text-amber-600 font-bold">[sust.]</span>이/가 +{" "}
+            <span className="text-orange-600 font-bold">몇</span>{" "}
+            <span className="text-amber-600 font-bold">[contador]</span>이에요/예요?
+          </p>
+          <p className="text-xs text-amber-400 italic mt-0.5">→ ¿Cuántos [sustantivos] hay/tienes?</p>
+        </div>
+
+        {/* Q&A práctica */}
+        <div className="flex flex-col gap-2">
+          {([
+            { q: "형제가 몇 명이에요?",   qm: "¿Cuántos hermanos tienes?",      a: "두 명이에요.",       am: "Tengo dos hermanos." },
+            { q: "나이가 몇 살이에요?",   qm: "¿Cuántos años tienes?",          a: "스물다섯 살이에요.", am: "Tengo 25 años." },
+            { q: "고양이가 몇 마리예요?", qm: "¿Cuántos gatos tienes/hay?",     a: "세 마리예요.",       am: "Hay tres." },
+            { q: "사과가 몇 개예요?",     qm: "¿Cuántas manzanas hay?",         a: "다섯 개예요.",       am: "Hay cinco." },
+            { q: "커피 몇 잔 드릴까요?",  qm: "¿Cuántas tazas de café le doy?", a: "두 잔 주세요.",      am: "Dos tazas, por favor." },
+          ] as { q: string; qm: string; a: string; am: string }[]).map((ex) => (
+            <div key={ex.q} className="rounded-xl border border-amber-100 overflow-hidden">
+              <div className="flex items-center justify-between bg-amber-50 px-3 py-2 border-b border-amber-100">
+                <div>
+                  <p className="text-amber-900 font-bold text-sm">{ex.q}</p>
+                  <p className="text-amber-400 text-xs">{ex.qm}</p>
+                </div>
+                <AudioButton text={ex.q} size="sm" />
+              </div>
+              <div className="flex items-center justify-between bg-white px-3 py-2">
+                <div>
+                  <p className="text-amber-700 font-semibold text-sm">{ex.a}</p>
+                  <p className="text-amber-400 text-xs">{ex.am}</p>
+                </div>
+                <AudioButton text={ex.a} size="sm" />
               </div>
             </div>
           ))}
