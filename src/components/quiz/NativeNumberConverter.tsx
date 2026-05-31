@@ -92,6 +92,16 @@ export default function NativeNumberConverter() {
       {isOutOfRange && (
         <p className="mt-3 text-red-400 text-sm">Ingresa un número entre 1 y 99</p>
       )}
+
+      {/* Nota informativa */}
+      <div className="mt-4 bg-amber-50 rounded-xl px-4 py-3 border border-amber-100">
+        <p className="text-xs text-amber-700 font-bold mb-0.5">📌 Dato</p>
+        <p className="text-xs text-amber-600">
+          Los números coreanos nativos solo llegan hasta el 99.
+          A partir del 100 se usan los números sino-coreanos (백, 천, 만…)
+          que viste en la Unidad 3.
+        </p>
+      </div>
     </div>
   );
 }
