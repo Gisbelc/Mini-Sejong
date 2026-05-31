@@ -9,6 +9,7 @@ import IntroLesson from "@/components/quiz/IntroLesson";
 import DailyActionsLesson from "@/components/quiz/DailyActionsLesson";
 import NumbersLesson from "@/components/quiz/NumbersLesson";
 import LocationLesson from "@/components/quiz/LocationLesson";
+import FoodLesson from "@/components/quiz/FoodLesson";
 import type { QuizQuestion as QuizQuestionType } from "@/lib/types";
 
 function shuffleArray<T>(arr: T[]): T[] {
@@ -89,7 +90,7 @@ export default function UnitPage({ params }: Props) {
     );
   }
 
-  const hasLesson = ["unit1", "unit2", "unit3", "unit4"].includes(unit.id);
+  const hasLesson = ["unit1", "unit2", "unit3", "unit4", "unit5"].includes(unit.id);
 
   return (
     <main className="flex-1 flex flex-col max-w-lg mx-auto w-full px-4 py-6">
@@ -143,6 +144,7 @@ export default function UnitPage({ params }: Props) {
                 {unit.id === "unit2" && <DailyActionsLesson />}
                 {unit.id === "unit3" && <NumbersLesson />}
                 {unit.id === "unit4" && <LocationLesson />}
+                {unit.id === "unit5" && <FoodLesson />}
 
                 <button
                   onClick={() => { setQuizOpen(true); setLessonOpen(false); }}
