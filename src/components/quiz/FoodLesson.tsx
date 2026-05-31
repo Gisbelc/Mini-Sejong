@@ -31,10 +31,31 @@ function Section({ emoji, title, color, children, defaultOpen = false }: {
 
 /* ── Vocabulario ── */
 const fruits = [
-  { korean: "사과",   meaning: "Manzana",  emoji: "🍎" },
-  { korean: "딸기",   meaning: "Fresa",    emoji: "🍓" },
-  { korean: "포도",   meaning: "Uva",      emoji: "🍇" },
-  { korean: "바나나", meaning: "Banana",   emoji: "🍌" },
+  { korean: "사과",    meaning: "Manzana",    emoji: "🍎" },
+  { korean: "딸기",    meaning: "Fresa",      emoji: "🍓" },
+  { korean: "포도",    meaning: "Uva",        emoji: "🍇" },
+  { korean: "바나나",  meaning: "Banana",     emoji: "🍌" },
+  { korean: "오렌지",  meaning: "Naranja",    emoji: "🍊" },
+  { korean: "수박",    meaning: "Sandía",     emoji: "🍉" },
+  { korean: "복숭아",  meaning: "Durazno",    emoji: "🍑" },
+  { korean: "배",      meaning: "Pera",       emoji: "🍐" },
+  { korean: "키위",    meaning: "Kiwi",       emoji: "🥝" },
+  { korean: "망고",    meaning: "Mango",      emoji: "🥭" },
+  { korean: "귤",      meaning: "Mandarina",  emoji: "🍊" },
+  { korean: "파인애플",meaning: "Piña",       emoji: "🍍" },
+];
+
+const vegetables = [
+  { korean: "당근",   meaning: "Zanahoria",  emoji: "🥕" },
+  { korean: "양파",   meaning: "Cebolla",    emoji: "🧅" },
+  { korean: "감자",   meaning: "Papa",       emoji: "🥔" },
+  { korean: "고구마", meaning: "Camote",     emoji: "🍠" },
+  { korean: "토마토", meaning: "Tomate",     emoji: "🍅" },
+  { korean: "오이",   meaning: "Pepino",     emoji: "🥒" },
+  { korean: "상추",   meaning: "Lechuga",    emoji: "🥬" },
+  { korean: "버섯",   meaning: "Hongo",      emoji: "🍄" },
+  { korean: "옥수수", meaning: "Maíz",       emoji: "🌽" },
+  { korean: "브로콜리",meaning: "Brócoli",   emoji: "🥦" },
 ];
 
 const drinks = [
@@ -261,6 +282,22 @@ export default function FoodLesson() {
                 <p className="text-red-400 text-xs">{f.meaning}</p>
               </div>
               <AudioButton text={f.korean} size="sm" />
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Verduras */}
+      <Section emoji="🥦" title="Vocabulario — Verduras" color="border-green-100">
+        <div className="grid grid-cols-2 gap-2 pt-1">
+          {vegetables.map((v) => (
+            <div key={v.korean} className="flex items-center justify-between bg-green-50 rounded-xl px-3 py-2">
+              <div>
+                <p className="text-xs">{v.emoji}</p>
+                <p className="text-green-800 font-bold text-base leading-tight">{v.korean}</p>
+                <p className="text-green-500 text-xs">{v.meaning}</p>
+              </div>
+              <AudioButton text={v.korean} size="sm" />
             </div>
           ))}
         </div>
