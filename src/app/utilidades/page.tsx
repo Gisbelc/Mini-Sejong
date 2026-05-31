@@ -32,7 +32,7 @@ export default function UtilidadesPage() {
       <div className="bg-emerald-50 border-2 border-emerald-100 rounded-2xl px-5 py-4 mb-6">
         <p className="text-sm text-emerald-700 font-medium">
           Selecciona las piezas y arma tu propia oración en coreano.
-          Cubre los patrones de las <strong>Unidades 1 a 4</strong>.
+          Cubre los patrones de las <strong>Unidades 1 a 5</strong>.
         </p>
       </div>
 

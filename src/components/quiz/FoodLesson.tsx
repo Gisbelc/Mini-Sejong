@@ -145,42 +145,6 @@ export default function FoodLesson() {
         </div>
       </Section>
 
-      {/* 맛있어요 */}
-      <Section emoji="😋" title="맛있어요 — es delicioso / está rico" color="border-pink-100">
-        <p className="text-xs text-pink-500 mb-3 pt-1">
-          Usa <strong>이/가</strong> antes de 맛있어요 según si el sustantivo termina en consonante o vocal.
-        </p>
-        <div className="flex gap-2 mb-3">
-          <div className="flex-1 bg-pink-50 rounded-xl px-3 py-2.5 border border-pink-200 text-center">
-            <p className="text-pink-800 font-extrabold text-base">+ 이 맛있어요</p>
-            <p className="text-pink-500 text-xs mt-1">termina en consonante</p>
-            <p className="text-pink-700 text-xs mt-0.5 font-mono">빵이 맛있어요</p>
-          </div>
-          <div className="flex-1 bg-pink-50 rounded-xl px-3 py-2.5 border border-pink-200 text-center">
-            <p className="text-pink-800 font-extrabold text-base">+ 가 맛있어요</p>
-            <p className="text-pink-500 text-xs mt-1">termina en vocal</p>
-            <p className="text-pink-700 text-xs mt-0.5 font-mono">사과가 맛있어요</p>
-          </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          {[
-            { k:"사과가 맛있어요!",             m:"¡La manzana está deliciosa!" },
-            { k:"딸기가 맛있어요!",             m:"¡La fresa está deliciosa!" },
-            { k:"햄버거가 맛있어요!",           m:"¡La hamburguesa está deliciosa!" },
-            { k:"빵이 맛있어요!",               m:"¡El pan está delicioso!" },
-            { k:"사과하고 딸기가 맛있어요!",   m:"¡Las manzanas y las fresas están deliciosas!" },
-          ].map((ex) => (
-            <div key={ex.k} className="flex items-center justify-between bg-pink-50 rounded-xl px-3 py-2.5 border border-pink-100">
-              <div>
-                <p className="text-pink-900 font-bold text-sm">{ex.k}</p>
-                <p className="text-pink-400 text-xs mt-0.5">{ex.m}</p>
-              </div>
-              <AudioButton text={ex.k} size="sm" />
-            </div>
-          ))}
-        </div>
-      </Section>
-
       {/* 있어요/없어요 — ¿hay? */}
       <Section emoji="🔍" title="¿Hay...? — 있어요 / 없어요" color="border-cyan-100">
         <p className="text-xs text-cyan-500 mb-3 pt-1">

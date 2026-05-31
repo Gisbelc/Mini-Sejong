@@ -275,6 +275,100 @@ const PATTERNS: PatternDef[] = [
     },
   },
 
+  /* ── U5 ── */
+  {
+    id: "p11",
+    unit: "U5",
+    unitBadge: "bg-pink-500 text-white",
+    border: "border-pink-200",
+    headerBg: "bg-pink-50",
+    chipSel: "bg-pink-500 text-white",
+    chipUnsel: "bg-white border-pink-200 text-pink-800",
+    chipText: "text-pink-800",
+    resultBg: "bg-pink-100",
+    resultText: "text-pink-900",
+    title: "___ 하고 ___ 가/이 맛있어요!",
+    titleEs: "[A] y [B] están deliciosos",
+    slots: [
+      {
+        label: "Primero (A)",
+        options: [
+          { k: "사과",   es: "manzana" },
+          { k: "딸기",   es: "fresa" },
+          { k: "바나나", es: "banana" },
+          { k: "포도",   es: "uva" },
+          { k: "오렌지", es: "naranja" },
+          { k: "커피",   es: "café" },
+          { k: "빵",     es: "pan" },
+          { k: "햄버거", es: "hamburguesa" },
+        ],
+      },
+      {
+        label: "Segundo (B)",
+        options: [
+          { k: "사과",   es: "manzana" },
+          { k: "딸기",   es: "fresa" },
+          { k: "바나나", es: "banana" },
+          { k: "포도",   es: "uva" },
+          { k: "오렌지", es: "naranja" },
+          { k: "우유",   es: "leche" },
+          { k: "주스",   es: "jugo" },
+          { k: "과자",   es: "snack" },
+        ],
+      },
+    ],
+    assemble: ([a, b]) => ({
+      ko: `${a.k}하고 ${b.k}${iGa(b.k)} 맛있어요!`,
+      es: `¡${a.es.charAt(0).toUpperCase() + a.es.slice(1)} y ${b.es} están deliciosos!`,
+    }),
+  },
+  {
+    id: "p12",
+    unit: "U5",
+    unitBadge: "bg-violet-500 text-white",
+    border: "border-violet-200",
+    headerBg: "bg-violet-50",
+    chipSel: "bg-violet-500 text-white",
+    chipUnsel: "bg-white border-violet-200 text-violet-800",
+    chipText: "text-violet-800",
+    resultBg: "bg-violet-100",
+    resultText: "text-violet-900",
+    title: "___ 하고 ___ 주세요!",
+    titleEs: "[A] y [B], por favor",
+    slots: [
+      {
+        label: "Primero (A)",
+        options: [
+          { k: "우유",   es: "leche" },
+          { k: "커피",   es: "café" },
+          { k: "주스",   es: "jugo" },
+          { k: "콜라",   es: "cola" },
+          { k: "빵",     es: "pan" },
+          { k: "사과",   es: "manzana" },
+          { k: "과자",   es: "snack" },
+          { k: "햄버거", es: "hamburguesa" },
+        ],
+      },
+      {
+        label: "Segundo (B)",
+        options: [
+          { k: "우유",   es: "leche" },
+          { k: "커피",   es: "café" },
+          { k: "주스",   es: "jugo" },
+          { k: "빵",     es: "pan" },
+          { k: "사과",   es: "manzana" },
+          { k: "딸기",   es: "fresa" },
+          { k: "과자",   es: "snack" },
+          { k: "햄버거", es: "hamburguesa" },
+        ],
+      },
+    ],
+    assemble: ([a, b]) => ({
+      ko: `${a.k}하고 ${b.k} 주세요!`,
+      es: `¡${a.es.charAt(0).toUpperCase() + a.es.slice(1)} y ${b.es}, por favor!`,
+    }),
+  },
+
   /* ── PREGUNTAS ── */
   {
     id: "p7",
@@ -541,7 +635,7 @@ function PatternCard({ pattern }: { pattern: PatternDef }) {
   );
 }
 
-const STATEMENT_IDS = ["p1","p2","p3","p4","p5","p6"];
+const STATEMENT_IDS = ["p1","p2","p3","p4","p5","p6","p11","p12"];
 const QUESTION_IDS  = ["p7","p8","p9","p10"];
 
 /* ── Componente principal ── */
