@@ -283,15 +283,6 @@ export default function FoodLesson() {
         </div>
       </Section>
 
-      {/* Números coreanos nativos */}
-      <Section emoji="1️⃣" title="Números coreanos nativos — 하나, 둘, 셋…" color="border-emerald-100">
-        <p className="text-xs text-emerald-400 mb-3 pt-1">
-          Distintos de los sino-coreanos (일, 이, 삼…). Se usan para <strong>contar objetos</strong> (개),
-          personas (명) y decir la <strong>hora</strong> (시).
-        </p>
-        <NativeNumberConverter />
-      </Section>
-
       {/* Vocabulario */}
       <Section emoji="📖" title="Vocabulario" color="border-emerald-100">
         <div className="flex flex-col gap-4 pt-1">
@@ -319,6 +310,15 @@ export default function FoodLesson() {
             </div>
           ))}
         </div>
+      </Section>
+
+      {/* Números coreanos nativos — siempre al final */}
+      <Section emoji="1️⃣" title="Números coreanos nativos — 하나, 둘, 셋…" color="border-emerald-100">
+        <p className="text-xs text-emerald-400 mb-3 pt-1">
+          Distintos de los sino-coreanos (일, 이, 삼…). Se usan para <strong>contar objetos</strong> (개),
+          personas (명) y decir la <strong>hora</strong> (시).
+        </p>
+        <NativeNumberConverter />
       </Section>
 
     </div>
