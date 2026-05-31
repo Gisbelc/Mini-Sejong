@@ -353,81 +353,30 @@ export default function FoodLesson() {
         <NativeNumberConverter />
       </Section>
 
-      {/* Frutas */}
-      <Section emoji="🍎" title="Vocabulario — Frutas" color="border-red-100">
-        <div className="grid grid-cols-2 gap-2 pt-1">
-          {fruits.map((f) => (
-            <div key={f.korean} className="flex items-center justify-between bg-red-50 rounded-xl px-3 py-2">
-              <div>
-                <p className="text-xs">{f.emoji}</p>
-                <p className="text-red-800 font-bold text-base leading-tight">{f.korean}</p>
-                <p className="text-red-400 text-xs">{f.meaning}</p>
+      {/* Vocabulario */}
+      <Section emoji="📖" title="Vocabulario" color="border-emerald-100">
+        <div className="flex flex-col gap-4 pt-1">
+          {[
+            { label: "🍎 Frutas",             items: fruits,     bg: "bg-red-50",    text: "text-red-800",    sub: "text-red-400"    },
+            { label: "🥦 Verduras",            items: vegetables, bg: "bg-green-50",  text: "text-green-800",  sub: "text-green-500"  },
+            { label: "🥛 Bebidas",             items: drinks,     bg: "bg-blue-50",   text: "text-blue-800",   sub: "text-blue-400"   },
+            { label: "🍔 Comida",              items: food,       bg: "bg-amber-50",  text: "text-amber-800",  sub: "text-amber-400"  },
+            { label: "🧼 Artículos de baño",   items: bathroom,   bg: "bg-teal-50",   text: "text-teal-800",   sub: "text-teal-500"   },
+          ].map(({ label, items, bg, text, sub }) => (
+            <div key={label}>
+              <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">{label}</p>
+              <div className="grid grid-cols-2 gap-2">
+                {items.map((item) => (
+                  <div key={item.korean} className={`flex items-center justify-between ${bg} rounded-xl px-3 py-2`}>
+                    <div>
+                      <p className="text-xs">{item.emoji}</p>
+                      <p className={`${text} font-bold text-base leading-tight`}>{item.korean}</p>
+                      <p className={`${sub} text-xs`}>{item.meaning}</p>
+                    </div>
+                    <AudioButton text={item.korean} size="sm" />
+                  </div>
+                ))}
               </div>
-              <AudioButton text={f.korean} size="sm" />
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Verduras */}
-      <Section emoji="🥦" title="Vocabulario — Verduras" color="border-green-100">
-        <div className="grid grid-cols-2 gap-2 pt-1">
-          {vegetables.map((v) => (
-            <div key={v.korean} className="flex items-center justify-between bg-green-50 rounded-xl px-3 py-2">
-              <div>
-                <p className="text-xs">{v.emoji}</p>
-                <p className="text-green-800 font-bold text-base leading-tight">{v.korean}</p>
-                <p className="text-green-500 text-xs">{v.meaning}</p>
-              </div>
-              <AudioButton text={v.korean} size="sm" />
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Bebidas */}
-      <Section emoji="🥛" title="Vocabulario — Bebidas" color="border-blue-100">
-        <div className="grid grid-cols-2 gap-2 pt-1">
-          {drinks.map((d) => (
-            <div key={d.korean} className="flex items-center justify-between bg-blue-50 rounded-xl px-3 py-2">
-              <div>
-                <p className="text-xs">{d.emoji}</p>
-                <p className="text-blue-800 font-bold text-base leading-tight">{d.korean}</p>
-                <p className="text-blue-400 text-xs">{d.meaning}</p>
-              </div>
-              <AudioButton text={d.korean} size="sm" />
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Comida */}
-      <Section emoji="🍔" title="Vocabulario — Comida" color="border-amber-100">
-        <div className="grid grid-cols-2 gap-2 pt-1">
-          {food.map((f) => (
-            <div key={f.korean} className="flex items-center justify-between bg-amber-50 rounded-xl px-3 py-2">
-              <div>
-                <p className="text-xs">{f.emoji}</p>
-                <p className="text-amber-800 font-bold text-base leading-tight">{f.korean}</p>
-                <p className="text-amber-400 text-xs">{f.meaning}</p>
-              </div>
-              <AudioButton text={f.korean} size="sm" />
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Artículos de baño */}
-      <Section emoji="🧼" title="Vocabulario — Artículos de baño" color="border-teal-100">
-        <div className="grid grid-cols-2 gap-2 pt-1">
-          {bathroom.map((b) => (
-            <div key={b.korean} className="flex items-center justify-between bg-teal-50 rounded-xl px-3 py-2">
-              <div>
-                <p className="text-xs">{b.emoji}</p>
-                <p className="text-teal-800 font-bold text-base leading-tight">{b.korean}</p>
-                <p className="text-teal-400 text-xs">{b.meaning}</p>
-              </div>
-              <AudioButton text={b.korean} size="sm" />
             </div>
           ))}
         </div>
